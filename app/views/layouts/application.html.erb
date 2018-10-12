@@ -23,7 +23,7 @@
             <a class="nav-link" href="#">All Post</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">New Post</a>
+            <%= link_to('New Post', new_post_path, class: "nav-link") %>
           </li>
         </ul>
         <% if current_user %>
