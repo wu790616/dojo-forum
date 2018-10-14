@@ -4,7 +4,10 @@
   <p>Title:</p>
   <%= form.text_field :title %>
   <p>Content:</p>
-  <%= form.text_area :content %>
+  <%= form.text_area :content %> 
+  <br>
+  <span>Draft?</span>
+  <%= form.check_box :draft %>
   <br>
   <%= form.submit %>
 <% end %>
