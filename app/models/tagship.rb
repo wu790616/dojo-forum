@@ -1,0 +1,2 @@
+class Tagship < ApplicationRecord
+end
