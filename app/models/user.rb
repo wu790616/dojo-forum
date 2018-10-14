@@ -4,6 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # 一個使用者有多篇Posts
+  has_many :posts, dependent: :destroy
+  
+  # 檢查是否為管理員
   def admin?
     self.role == "admin"
   end
