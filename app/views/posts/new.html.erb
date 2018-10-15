@@ -12,5 +12,9 @@
   <p>Category:</p>
   <%= form.collection_check_boxes :category_ids, Category.all, :id, :name %>
   <br>
+  <p>Image:</p>
+  <%= image_tag @post.image, width: '300px' if @post.image? %>
+  <%= form.file_field :image %>
+  <br>
   <%= form.submit %>
 <% end %>

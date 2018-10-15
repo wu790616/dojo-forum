@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
+  mount_uploader :image, ImageUploader
+
   # 一個Post屬於一個使用者
   belongs_to :user
 
