@@ -9,6 +9,10 @@
   <span>Draft?</span>
   <%= form.check_box :draft %>
   <br>
+  <span>Who can see?</span>
+  <%= form.radio_button :permission, 'all' %>All
+  <%= form.radio_button :permission, 'friend' %>Friend
+  <%= form.radio_button :permission, 'myself' %>Myself
   <p>Category:</p>
   <%= form.collection_check_boxes :category_ids, Category.all, :id, :name %>
   <br>
