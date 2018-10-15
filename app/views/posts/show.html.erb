@@ -8,6 +8,9 @@
 <div>
   <%= @post.content %>
 </div>
+<% if current_user == @post.user %>
+  <%= link_to 'Edit', edit_post_path(@post) %>
+<% end %>
 <hr>
 <!-- other info for test -->
 Draft:<p><%= @post.draft %></p>
