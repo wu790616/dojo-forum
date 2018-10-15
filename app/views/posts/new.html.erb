@@ -9,5 +9,8 @@
   <span>Draft?</span>
   <%= form.check_box :draft %>
   <br>
+  <p>Category:</p>
+  <%= form.collection_check_boxes :category_ids, Category.all, :id, :name %>
+  <br>
   <%= form.submit %>
 <% end %>
