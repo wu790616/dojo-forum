@@ -1,0 +1,20 @@
+<h1><%= @post.title %></h1>
+<div>
+  <%= @post.user.name %>
+</div>
+<div>
+  <%= image_tag @post.image.url if @post.image? %>
+</div>
+<div>
+  <%= @post.content %>
+</div>
+<hr>
+<!-- other info for test -->
+Draft:<p><%= @post.draft %></p>
+Permission:<p><%= @post.permission %></p>
+Category:
+<p>
+  <% @post.categories.each do |category| %>
+    <%= category.name %>,
+  <% end %>
+</p>

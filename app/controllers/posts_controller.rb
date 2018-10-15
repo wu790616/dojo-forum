@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
+    @posts = Post.all
   end
 
   def new
@@ -13,6 +14,10 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user = current_user
     @post.save
+  end
+
+  def show
+    @post = Post.find(params[:id])
   end
 
   private
