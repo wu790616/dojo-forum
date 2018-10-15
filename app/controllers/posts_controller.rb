@@ -22,6 +22,10 @@ class PostsController < ApplicationController
   end
 
   def edit
+    if @post.user != current_user
+      flash[:alert] = "只有作者可以編輯"
+      redirect_to post_path(@post)
+    end
   end
 
   def update
