@@ -1,8 +1,6 @@
 <%= bootstrap_form_with model: @post do |form| %>
   <%= form.text_field :title %>
   <%= form.text_area :content %> 
-  <span>Draft?</span>
-  <%= form.check_box :draft %>
   <span>Who can see?</span>
   <%= form.radio_button :permission, 'all', inline: true %>
   <%= form.radio_button :permission, 'friend', inline: true %>
@@ -12,5 +10,7 @@
     <%= image_tag @post.image.url, width: '300px', class: "img-thumbnail" if @post.image? %>
     <%= form.file_field_without_bootstrap :image, class: "form-control-file" %>
   </div>
-  <%= form.submit %>
+  <!-- 2 submit button for draft/publish -->
+  <%= form.submit "Save Draft", class: "btn btn-secondary" %>
+  <%= form.submit "Submit", class: "btn btn-primary" %>     
 <% end %>

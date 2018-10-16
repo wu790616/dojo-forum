@@ -14,6 +14,8 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
+    @post.draft = false if publishing?
+    @post.draft = true unless publishing?
     @post.save
     redirect_to post_path(@post)
   end
@@ -29,6 +31,8 @@ class PostsController < ApplicationController
   end
 
   def update
+    @post.draft = false if publishing?
+    @post.draft = true unless publishing?
     @post.update(post_params)
     redirect_to post_path(@post)
   end
@@ -41,5 +45,12 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
-  end  
+  end
+
+  def publishing?
+    if params[:commit] == "Submit"
+      return true
+    end
+    return false
+  end 
 end
