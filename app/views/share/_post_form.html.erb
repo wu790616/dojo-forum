@@ -1,22 +1,16 @@
-<%= form_with model: @post do |form| %>
-  <p>Title:</p>
+<%= bootstrap_form_with model: @post do |form| %>
   <%= form.text_field :title %>
-  <p>Content:</p>
   <%= form.text_area :content %> 
-  <br>
   <span>Draft?</span>
   <%= form.check_box :draft %>
-  <br>
   <span>Who can see?</span>
-  <%= form.radio_button :permission, 'all' %>All
-  <%= form.radio_button :permission, 'friend' %>Friend
-  <%= form.radio_button :permission, 'myself' %>Myself
-  <p>Category:</p>
-  <%= form.collection_check_boxes :category_ids, Category.all, :id, :name %>
-  <br>
-  <p>Image:</p>
-  <%= image_tag @post.image.url, width: '300px' if @post.image? %>
-  <%= form.file_field :image %>
-  <br>
+  <%= form.radio_button :permission, 'all', inline: true %>
+  <%= form.radio_button :permission, 'friend', inline: true %>
+  <%= form.radio_button :permission, 'myself', inline: true %>
+  <%= form.collection_check_boxes :category_ids, Category.all, :id, :name, label: "Category:", inline: true %>
+  <div class="image-upload">
+    <%= image_tag @post.image.url, width: '300px', class: "img-thumbnail" if @post.image? %>
+    <%= form.file_field_without_bootstrap :image, class: "form-control-file" %>
+  </div>
   <%= form.submit %>
 <% end %>
