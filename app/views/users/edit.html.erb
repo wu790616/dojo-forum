@@ -1,0 +1,10 @@
+<h1>Personal Edit Page</h1>
+<%= form_with model: @user do |form| %>
+  <%= form.text_field :name %>
+  <%= form.text_area :introduction, rows: "4" %> 
+  <div class="image-upload">
+    <%= image_tag @user.avatar.url, width: '200px', class: "img-thumbnail" if @user.avatar? %>
+    <%= form.file_field :avatar, class: "form-control-file" %>
+  </div>
+  <%= form.submit 'Save' %>
+<% end %>

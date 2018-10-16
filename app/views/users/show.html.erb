@@ -7,3 +7,7 @@ name:
 <br>
 introduction:
 <%= @user.introduction %>
+<br>
+<% if @user == current_user %>
+  <%= link_to 'Edit', edit_user_path(@user) %>
+<% end %>
