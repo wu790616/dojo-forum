@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   mount_uploader :avatar, AvatarUploader
+  validates_presence_of :name
 
   # 一個使用者有多篇Posts
   has_many :posts, dependent: :destroy

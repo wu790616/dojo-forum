@@ -5,14 +5,19 @@ class UsersController < ApplicationController
   end
 
   def edit
-   if @user != current_user
+    if @user != current_user
+      flash[:alert] = "只有本人可以編輯"
       redirect_to user_path(@user)
     end
   end
 
-  def update
-    @user.update(user_params)
-    redirect_to user_path(@user)
+  def update 
+    if @user.update(user_params)
+      redirect_to user_path(@user)
+    else
+      flash.now[:alert] = @user.errors.full_messages
+      render :action => :edit
+    end
   end
 
   private
