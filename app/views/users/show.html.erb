@@ -1,0 +1,9 @@
+<h1>Personal Page</h1>
+avatar:
+<%= image_tag @user.avatar.url if @user.avatar? %>
+<br>
+name:
+<%= @user.name %>
+<br>
+introduction:
+<%= @user.introduction %>
