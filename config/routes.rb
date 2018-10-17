@@ -7,7 +7,10 @@ Rails.application.routes.draw do
     root "posts#index"
   end
 
-  resources :posts
+  resources :posts do
+    resources :replies, only: [:create, :destroy]
+  end
+
   resources :users, only: [:show, :edit, :update]
 
 end
