@@ -2,10 +2,6 @@ class PostsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
   before_action :set_post, only: [:show, :edit, :update]
 
-  def index
-    @posts = Post.all
-  end
-
   def new
     @post = Post.new
     @categories = Category.all

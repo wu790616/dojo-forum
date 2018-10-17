@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   
   devise_for :users
-  root "posts#index"
+  root "categories#index"
 
   namespace :admin do
-    root "posts#index"
+    root "categories#index"
+    resources :categories, only: [:index]
   end
 
   resources :posts do
@@ -12,5 +13,6 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:show, :edit, :update]
+  resources :categories, only: [:index]
 
 end
