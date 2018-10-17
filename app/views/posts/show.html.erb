@@ -40,6 +40,16 @@
     </div>
   </div>
 
+  <!-- reply display area -->
+  <div class="row">
+    <% @replies.each do |reply| %>
+      <%= reply.user.name %>
+      <br>
+      <%= reply.content %>
+      <br>
+    <% end %>
+  </div>
+
   <!-- create reply area -->
   <div class="row">
     <%= form_with model: [ @post, @reply ] do |form|  %>
