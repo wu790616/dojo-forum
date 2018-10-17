@@ -17,6 +17,19 @@
     <div class="col-2 post-table post-user-table">
       <%= image_tag @post.user.avatar.url, class: "post-avatar img-thumbnail" %>
       <%= link_to @post.user.name, user_path(@post.user) %>
+      <br>
+      <% if @post.user == current_user %>
+        <%= link_to 'Edit', edit_post_path(@post), class: "btn btn-info" %>
+        <br>
+        <% if @post.draft %>
+          <span class="badge badge-success">Published</span>
+        <% else %>
+          <span class="badge badge-secondary">Draft</span>
+        <% end %>
+        <br>
+        Permission:
+        <span class="badge badge-primary"><%= @post.permission.upcase %></span>
+      <% end %>
     </div>
     <div class="col-10 post-table">
       <% if @post.image? %>
@@ -25,12 +38,6 @@
       <% end %>
       <%= @post.content %>
     </div>
-    <% if current_user == @post.user %>
-      <%= link_to 'Edit', edit_post_path(@post) %>
-    <% end %>
-    <!-- other info for test -->
-    Draft:<p><%= @post.draft %></p>
-    Permission:<p><%= @post.permission %></p>    
   </div>
 </div>
 
