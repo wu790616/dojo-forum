@@ -39,6 +39,14 @@
       <%= @post.content %>
     </div>
   </div>
+
+  <!-- create reply area -->
+  <div class="row">
+    <%= form_with model: [ @post, @reply ] do |form|  %>
+      <%= form.text_area :content, placeholder: "留下你的回覆...", rows: "3" %>
+      <%= form.submit '留言', class: "btn btn-primary" %>
+    <% end %>
+  </div>
 </div>
 
 
