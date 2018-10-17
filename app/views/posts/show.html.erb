@@ -1,23 +1,36 @@
-<h1><%= @post.title %></h1>
-<div>
-  <%= @post.user.name %>
+<div class="container">
+  <div class="row post-nav">
+    <ul class="nav">
+      <li class="nav-item">
+        <h1><%= @post.title %></h1>
+      </li>
+      <li class="nav-item">
+        <% @post.categories.each do |category| %>
+          <span class="badge badge-pill badge-info"><%= category.name %></span>        
+        <% end %> 
+      </li>
+    </ul> 
+  </div>
+  
+  <!-- post area -->
+  <div class="row">
+    <div class="col-2 post-table post-user-table">
+      <%= image_tag @post.user.avatar.url, class: "post-avatar img-thumbnail" %>
+      <%= link_to @post.user.name, user_path(@post.user) %>
+    </div>
+    <div class="col-10 post-table">
+      <% if @post.image? %>
+        <%= image_tag @post.image.url, class: "img-fluid" %>
+      <% end %>
+      <%= @post.content %>
+    </div>
+    <% if current_user == @post.user %>
+      <%= link_to 'Edit', edit_post_path(@post) %>
+    <% end %>
+    <!-- other info for test -->
+    Draft:<p><%= @post.draft %></p>
+    Permission:<p><%= @post.permission %></p>    
+  </div>
 </div>
-<div>
-  <%= image_tag @post.image.url if @post.image? %>
-</div>
-<div>
-  <%= @post.content %>
-</div>
-<% if current_user == @post.user %>
-  <%= link_to 'Edit', edit_post_path(@post) %>
-<% end %>
-<hr>
-<!-- other info for test -->
-Draft:<p><%= @post.draft %></p>
-Permission:<p><%= @post.permission %></p>
-Category:
-<p>
-  <% @post.categories.each do |category| %>
-    <%= category.name %>,
-  <% end %>
-</p>
+
+

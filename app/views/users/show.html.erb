@@ -1,6 +1,6 @@
 <h1>Personal Page</h1>
 avatar:
-<%= image_tag @user.avatar.url if @user.avatar? %>
+<%= image_tag @user.avatar.url, class: "post-avatar img-thumbnail" %>
 <br>
 name:
 <%= @user.name %>

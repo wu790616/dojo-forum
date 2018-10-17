@@ -1,4 +1,4 @@
-/* for form style ====================*/
+/* for form style ==================== */
 
 .image-upload {
   padding-bottom: 10px;
@@ -6,4 +6,27 @@
 
 .registration-button {
   padding-bottom: 10px;  
+}
+
+/* for post show ==================== */
+.post-nav {
+  background-color: #DEDEDE;
+  padding-left: 10px;
+}
+
+.post-table {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #DEDEDE;
+  padding: 5px 5px;
+}
+
+.post-avatar {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+}
+
+.post-user-table {
+  text-align: center;
 }
