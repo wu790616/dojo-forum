@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to user_path(@user)
     else
-      flash.now[:alert] = @user.errors.full_messages
+      flash.now[:alert] = @user.errors.full_messages.to_sentence
       render :action => :edit
     end
   end

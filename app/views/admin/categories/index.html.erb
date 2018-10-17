@@ -23,7 +23,9 @@
           <% @categories.each do |category| %>
             <tr class="d-flex">
               <td class="col-8"><%= category.name %></td>
-              <td class="col-4">action button</td>
+              <td class="col-4">
+                <%= link_to 'Delete', admin_category_path(category), method: :delete, :data => { :confirm => "Are you sure?" }, class: "btn btn-danger" %>  
+              </td>
             </tr>
           <% end %>
         </tbody>
