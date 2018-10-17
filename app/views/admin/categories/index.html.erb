@@ -1,1 +1,39 @@
-<h1>後台首頁</h1>
+<div class="container">
+  <h1>後台首頁</h1>
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#category-list">Category List</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#user-list">User List</a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <!-- Category List -->
+    <div class="tab-pane fade show active" data-toggle="tab" id="category-list">
+      <table class="table table-bordered table-striped">
+        <thead class="category-thead">
+          <tr class="d-flex">
+            <th scope="col" class="col-8">Name</th>
+            <th scope="col" class="col-4">Action</th>            
+          </tr>
+        </thead>
+        <tbody>
+          <% @categories.each do |category| %>
+            <tr class="d-flex">
+              <td class="col-8"><%= category.name %></td>
+              <td class="col-4">action button</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- User List -->
+    <div class="tab-pane fade" data-toggle="tab" id="user-list">
+      User List
+    </div>    
+  </div>
+
+</div>
