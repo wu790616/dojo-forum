@@ -8,6 +8,10 @@ class User < ApplicationRecord
 
   # 一個使用者有多篇Posts
   has_many :posts, dependent: :destroy
+
+  # 一個使用者有多個Reply
+  has_many :replies, dependent: :destroy
+  has_many :replied_posts, through: :replies, source: :post
   
   # 檢查是否為管理員
   def admin?
