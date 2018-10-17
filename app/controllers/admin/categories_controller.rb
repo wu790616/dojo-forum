@@ -7,16 +7,15 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def destroy
-
+    unless @category.destroy
+      flash[:alert] = @category.errors.full_messages.to_sentence
+    end
+    redirect_back(fallback_location: root_path) 
   end
 
   private
 
   def set_category
     @category = Category.find(params[:id])
-    unless @category.destroy
-      flash[:alert] = @category.errors.full_messages.to_sentence
-    end
-    redirect_back(fallback_location: root_path) 
   end
 end
