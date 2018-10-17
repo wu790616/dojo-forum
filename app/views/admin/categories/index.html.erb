@@ -21,10 +21,10 @@
         </thead>
         <tbody>
           <% @categories.each do |category| %>
-            <tr class="d-flex">
+            <tr class="d-flex" id="c-<%= category.id %>">
               <td class="col-8"><%= category.name %></td>
               <td class="col-4">
-                <%= link_to 'Delete', admin_category_path(category), method: :delete, :data => { :confirm => "Are you sure?" }, class: "btn btn-danger" %>  
+                <%= link_to 'Delete', admin_category_path(category), remote: true, method: :delete, :data => { :confirm => "Are you sure?" }, class: "btn btn-danger" %>  
               </td>
             </tr>
           <% end %>

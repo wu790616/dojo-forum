@@ -9,8 +9,8 @@ class Admin::CategoriesController < ApplicationController
   def destroy
     unless @category.destroy
       flash[:alert] = @category.errors.full_messages.to_sentence
-    end
-    redirect_back(fallback_location: root_path) 
+      redirect_back(fallback_location: root_path)
+    end    
   end
 
   private
