@@ -1,10 +1,14 @@
 class Admin::CategoriesController < ApplicationController
   before_action :authenticate_admin
-  before_action :set_category, only: [:destroy]
+  before_action :set_category, only: [:destroy, :edit, :update]
 
   def index
     @categories = Category.all
-    @category = Category.new
+    if params[:id]
+      set_category
+    else
+      @category = Category.new
+    end
   end
 
   def destroy
@@ -20,6 +24,16 @@ class Admin::CategoriesController < ApplicationController
       flash[:alert] = @category.errors.full_messages.to_sentence
       redirect_back(fallback_location: root_path)
     end   
+  end
+
+  def edit
+  end
+
+  def update
+    unless @category.update_attributes(category_params)
+      flash[:alert] = @category.errors.full_messages.to_sentence
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   private

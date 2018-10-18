@@ -1,0 +1,3 @@
+<% html = j( render :partial => "form", :locals => { :category => @category } ) %>
+var category_tds = $("#c-<%= @category.id %>").children();
+$(category_tds[0]).html("<%= html %>");

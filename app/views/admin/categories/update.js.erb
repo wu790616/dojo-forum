@@ -1,0 +1,2 @@
+<% html = j( render :partial => "category", :locals => { :category => @category } ) %>
+$("#c-<%= @category.id %>").html("<%= html %>")
