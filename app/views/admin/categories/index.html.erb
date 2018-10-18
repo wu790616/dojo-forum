@@ -12,7 +12,7 @@
   <div class="tab-content">
     <!-- Category List -->
     <div class="category-form form-inline">
-      <%= form_with model: [:admin, @category], local: true do |form| %>
+      <%= form_with model: [:admin, @category], id: "category-form" do |form| %>
         <%= form.text_field :name, class: "form-control", placeholder: "Category Name" %>
         <%= form.submit "Create", class: "btn btn-primary" %>
       <% end %>
@@ -25,13 +25,10 @@
             <th scope="col" class="col-4">Action</th>            
           </tr>
         </thead>
-        <tbody>
+        <tbody id="category-body">
           <% @categories.each do |category| %>
             <tr class="d-flex" id="c-<%= category.id %>">
-              <td class="col-8"><%= category.name %></td>
-              <td class="col-4">
-                <%= link_to 'Delete', admin_category_path(category), remote: true, method: :delete, :data => { :confirm => "Are you sure?" }, class: "btn btn-danger" %>  
-              </td>
+              <%= render :partial => "category", :locals => { :category => category } %>
             </tr>
           <% end %>
         </tbody>

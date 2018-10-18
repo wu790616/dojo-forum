@@ -1,0 +1,6 @@
+var category= document.createElement("tr");
+category.id = "c-<%= @category.id %>";
+category.className = "d-flex"; 
+category.innerHTML = "<%= j render(:partial => "category", :locals => { :category => @category }) %>";
+document.getElementById("category-form").reset();
+$("#category-body").append(category);

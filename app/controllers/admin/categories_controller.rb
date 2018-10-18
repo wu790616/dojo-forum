@@ -18,8 +18,8 @@ class Admin::CategoriesController < ApplicationController
     @category = Category.new(category_params)
     unless @category.save
       flash[:alert] = @category.errors.full_messages.to_sentence
-    end
-    redirect_back(fallback_location: root_path)
+      redirect_back(fallback_location: root_path)
+    end   
   end
 
   private
