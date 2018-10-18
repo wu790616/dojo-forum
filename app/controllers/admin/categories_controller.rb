@@ -16,7 +16,9 @@ class Admin::CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
-    @category.save!
+    unless @category.save
+      flash[:alert] = @category.errors.full_messages.to_sentence
+    end
     redirect_back(fallback_location: root_path)
   end
 
