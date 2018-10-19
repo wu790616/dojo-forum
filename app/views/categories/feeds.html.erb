@@ -2,21 +2,21 @@
 <div class="feeds-up">
   <div class="container">
     <div class="row">
-      <div class="col feeds-item">
+      <div class="col feeds-up-item">
         <h2>
           User
           <br>
           <span class="badge badge-info"><%= @users_count %></span>
         </h2>   
       </div>
-      <div class="col feeds-item">
+      <div class="col feeds-up-item">
         <h2>
           Post
           <br>
           <span class="badge badge-info"><%= @posts_count %></span>
         </h2>        
       </div>
-      <div class="col feeds-item">
+      <div class="col feeds-up-item">
         <h2>
           Reply
           <br>
@@ -27,24 +27,45 @@
   </div>
 </div>
 
-Most Popular Post:
-<br>
-<ol>
-  <% @top10_posts.each do |post| %>
-    <li>
-      <%= link_to post.title, post_path(post) %>
-      <%= post.edit_time.localtime.to_s(:long) %>
-    </li>
-  <% end %>  
-</ol>
-<br>
-Chatterbox:
-<br>
-<ol>
-  <% @top10_users.each do |user| %>
-    <li>
-      <%= link_to user.name, user_path(user) %>
-      <%= user.replies_count %>
-    </li>
-  <% end %>  
-</ol>
+<!-- feeds 下半部 -->
+<div class="container">
+  <div class="row">
+    <!-- 聲量最大使用者 -->
+    <div class="col feeds-down">
+      <div class="card feeds-down-item">
+        <div class="card-header">
+          <h3>Chatterbox</h3>
+        </div>
+        <ul class="list-group list-group-flush">
+          <% @top10_users.each do |user| %>
+            <li class="list-group-item">
+              <%= link_to user.name, user_path(user) %>
+              <%= user.replies_count %>
+            </li>
+          <% end %>  
+        </ul>      
+      </div>
+    </div>
+    <!-- 最熱門的文章 -->
+    <div class="col feeds-down">
+      <div class="card feeds-down-item">
+        <div class="card-header">
+          <h3>Most Popular Post</h3>
+        </div>
+        <ul class="list-group list-group-flush">
+          <% @top10_posts.each do |post| %>
+            <li class="list-group-item">
+              <%= link_to post.title, post_path(post) %>
+              <br>
+              last update:
+              <br>
+              <%= post.edit_time.localtime.to_s(:long) %>
+            </li>
+          <% end %>  
+        </ul>      
+      </div>
+    </div>
+  </div>
+</div>
+
+
