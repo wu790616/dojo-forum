@@ -1,1 +1,35 @@
 <h1>Feeds</h1>
+
+User count:
+<%= @users_count %>
+<br>
+Post count:
+<%= @posts_count %>
+<br>
+Reply count:
+<%= @replies_count %>
+<br>
+
+<hr>
+
+Most Popular Post:
+<br>
+<ol>
+  <% @top10_posts.each do |post| %>
+    <li>
+      <%= link_to post.title, post_path(post) %>
+      <%= post.created_at.localtime.to_s(:long) %>
+    </li>
+  <% end %>  
+</ol>
+<br>
+Chatterbox:
+<br>
+<ol>
+  <% @top10_users.each do |user| %>
+    <li>
+      <%= link_to user.name, user_path(user) %>
+      <%= user.replies_count %>
+    </li>
+  <% end %>  
+</ol>
