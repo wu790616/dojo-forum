@@ -10,6 +10,10 @@
 User.create(name: "Admin", email: "admin@example.com", password: "12345678", role: "admin")
 puts "Default admin created!"
 
+#Default user
+User.create(email: "test@test.com", name: "Tester", password: "123456")
+puts "Default test account created"
+
 # Category
 Post.destroy_all
 Category.destroy_all
