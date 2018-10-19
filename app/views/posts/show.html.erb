@@ -32,11 +32,18 @@
       <% end %>
     </div>
     <div class="col-10 post-table">
-      <% if @post.image? %>
-        <%= image_tag @post.image.url, class: "post-image rounded mx-auto d-block" %>
-        <hr>
+      <div>
+        <% if @post.image? %>
+          <%= image_tag @post.image.url, class: "post-image rounded mx-auto d-block" %>
+          <hr>
+        <% end %>
+        <%= @post.content %>    
+      </div>
+      <% if @post.user == current_user || current_user.role == "admin" %>
+        <div class="post-btn">
+          <%= link_to 'Delete', post_path(@post), method: :delete, :data => { :confirm => "Are you sure?" }, class: "btn btn-danger" %>
+        </div>
       <% end %>
-      <%= @post.content %>
     </div>
   </div>
 

@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
-  before_action :set_post, only: [:show, :edit, :update]
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def new
     @post = Post.new
@@ -33,6 +33,13 @@ class PostsController < ApplicationController
     @post.draft = true unless publishing?
     @post.update(post_params)
     redirect_to post_path(@post)
+  end
+
+  def destroy
+    if @post.destroy
+      flash[:notice] = "Post has removes"
+      redirect_to root_path
+    end
   end
 
   private
