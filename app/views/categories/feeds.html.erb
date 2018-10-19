@@ -1,16 +1,31 @@
-<h1>Feeds</h1>
-
-User count:
-<%= @users_count %>
-<br>
-Post count:
-<%= @posts_count %>
-<br>
-Reply count:
-<%= @replies_count %>
-<br>
-
-<hr>
+<!-- feeds 上半部 -->
+<div class="feeds-up">
+  <div class="container">
+    <div class="row">
+      <div class="col feeds-item">
+        <h2>
+          User
+          <br>
+          <span class="badge badge-info"><%= @users_count %></span>
+        </h2>   
+      </div>
+      <div class="col feeds-item">
+        <h2>
+          Post
+          <br>
+          <span class="badge badge-info"><%= @posts_count %></span>
+        </h2>        
+      </div>
+      <div class="col feeds-item">
+        <h2>
+          Reply
+          <br>
+          <span class="badge badge-info"><%= @replies_count %></span>
+        </h2>          
+      </div>
+    </div>
+  </div>
+</div>
 
 Most Popular Post:
 <br>
