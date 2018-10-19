@@ -13,7 +13,9 @@ Rails.application.routes.draw do
     resources :replies, only: [:create, :destroy]
   end
 
+  resources :categories, only: [:index] do
+     get :feeds, :on => :collection
+  end
+  
   resources :users, only: [:show, :edit, :update]
-  resources :categories, only: [:index]
-
 end
