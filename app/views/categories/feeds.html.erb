@@ -57,9 +57,12 @@
             <li class="list-group-item">
               <%= link_to post.title, post_path(post) %>
               <br>
-              last update:
+              Reply: <%= post.replies_count %>
               <br>
-              <%= post.edit_time.localtime.to_s(:long) %>
+              Last reply:
+              <br>
+              <% reply = post.replies.order(updated_at: :desc).first %>
+              <%= reply.updated_at.localtime.to_s(:long) %>
             </li>
           <% end %>  
         </ul>      
