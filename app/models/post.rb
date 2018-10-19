@@ -2,6 +2,7 @@ class Post < ApplicationRecord
   mount_uploader :image, ImageUploader
   # Filter非草稿post
   scope :published, -> { where( draft: false ) }
+  scope :draft, -> { where( draft: true ) }
 
   # 一個Post屬於一個使用者
   belongs_to :user

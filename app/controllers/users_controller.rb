@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @myposts = @user.posts.published
+    @mydrafts = @user.posts.draft
   end
 
   def edit
