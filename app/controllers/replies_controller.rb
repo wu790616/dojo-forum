@@ -1,5 +1,5 @@
 class RepliesController < ApplicationController
-  before_action :set_reply, only: [:edit, :update]
+  before_action :set_reply, only: [:edit, :update, :destroy]
 
   def create
     @post = Post.find(params[:post_id])
@@ -16,6 +16,10 @@ class RepliesController < ApplicationController
     if params[:commit] == "Save"
       @reply.update_attributes(reply_params)
     end
+  end
+
+  def destroy
+    @reply.destroy
   end
 
   private

@@ -51,14 +51,15 @@
       <table class="table">
         <tbody>
           <% @mycomments.each do |reply| %>
-            <tr>
+            <tr id="whole-<%= reply.id %>">
               <td>
                 <%= link_to reply.post.title, post_path(reply.post) %>
                 <div id="reply-<%= reply.id %>"><%= reply.content %></div>                    
               </td>
               <% if @user == current_user %>
                 <td>
-                  <%= link_to 'Edit', edit_reply_path(reply), remote: true, class: "btn btn-primary" %>
+                  <%= link_to 'Edit', edit_reply_path(reply), remote: true, class: "btn btn-outline-primary btn-sm" %>
+                  <%= link_to 'Delete', reply_path(reply), remote: true, method: :delete, :data => { :confirm => "Are you sure?" }, class: "btn btn-outline-danger btn-sm" %>
                 </td>
               <% end %>
             </tr>
