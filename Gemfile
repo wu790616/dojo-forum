@@ -47,6 +47,9 @@ gem "bootstrap_form", ">= 4.0.0.alpha1"
 # image uploader
 gem 'carrierwave'
 
+# fake data
+gem 'ffaker'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

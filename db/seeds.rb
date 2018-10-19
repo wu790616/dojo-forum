@@ -11,6 +11,7 @@ User.create(name: "Admin", email: "admin@example.com", password: "12345678", rol
 puts "Default admin created!"
 
 # Category
+Post.destroy_all
 Category.destroy_all
 category_list = [
   { name: "寵物" },
