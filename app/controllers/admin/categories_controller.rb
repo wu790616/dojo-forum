@@ -9,6 +9,7 @@ class Admin::CategoriesController < ApplicationController
     else
       @category = Category.new
     end
+    @users = User.all
   end
 
   def destroy
