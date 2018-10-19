@@ -8,7 +8,7 @@ class Admin::UsersController < ApplicationController
   def update
     @user.update_attributes(user_params)
     flash[:notice] = "Update successfully"
-    redirect_back(fallback_location: root_path)
+    redirect_to request.referer + "#user-list"
   end
 
   private

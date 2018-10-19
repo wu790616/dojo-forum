@@ -1,6 +1,24 @@
+<script>
+  // Anchor for bookmarked issues and Xmap
+  $(document).on("turbolinks:load", function(){ 
+    // Javascript to enable link to tab
+    var url = document.location.toString();
+    if (url.match('#')) {
+      $('#admin-tabs a[href="#' + url.split('#')[1] + '"]').tab('show');
+    } else {
+      $('#admin-tabs a[href="#' + "category-list" + '"]').tab('show');
+    }
+
+    // Change hash for page-reload
+    $('#admin-tabs a').on('shown.bs.tab', function (e) {
+      window.location.hash = e.target.hash;
+      $(window).scrollTop(0);
+    })
+  });
+</script>
 <div class="container">
   <h1>後台首頁</h1>
-  <ul class="nav nav-tabs">
+  <ul class="nav nav-tabs" id="admin-tabs">
     <li class="nav-item">
       <a class="nav-link active" data-toggle="tab" href="#category-list">Category List</a>
     </li>
@@ -66,5 +84,4 @@
       </table>
     </div>    
   </div>
-
 </div>
