@@ -1,0 +1,19 @@
+<table class="table">
+  <tbody>
+    <% posts.each do |post| %>
+      <tr>
+        <td><%= link_to post.title, post_path(post) %></td>
+        <td>
+          <% if post.draft %>
+            <span class="badge badge-secondary">Draft</span>    
+          <% else %>
+            <span class="badge badge-success">Published</span>
+          <% end %>          
+        </td>
+        <td>
+          <%= post.edit_time.localtime.to_s(:long) %>
+        </td>
+      </tr>
+    <% end %> 
+  </tbody>
+</table>

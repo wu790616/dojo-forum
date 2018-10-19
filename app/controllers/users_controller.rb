@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user
 
-  def show  
+  def show
+    @myposts = @user.posts.published
   end
 
   def edit

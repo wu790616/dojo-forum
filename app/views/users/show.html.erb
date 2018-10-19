@@ -1,3 +1,4 @@
+<!-- user page 上半部 -->
 <div class="user-up">
   <div class="container">
     <div class="row">
@@ -17,4 +18,48 @@
   </div>
 </div>
  
+<!-- user page 下半部 -->
+<div class="container">
+  <!-- NAV 標籤 -->
+  <ul class="nav nav-tabs nav-fill">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#my-post">My Post</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#my-comment">My Comment</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#my-collect">My Collect</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#my-draft">My Draft</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#my-friend">My Friend</a>
+    </li>
+  </ul>
 
+  <!-- NAV 內容 -->
+  <div class="tab-content">
+    <!-- My Post -->
+    <div class="tab-pane fade show active" id="my-post">
+      <%= render partial: "share/user_post", locals: { posts: @myposts } %>
+    </div>
+
+    <!-- My Comment -->
+    <div class="tab-pane fade" id="my-comment">
+    </div>
+
+    <!-- My Collect -->
+    <div class="tab-pane fade" id="my-collect">
+    </div>
+
+    <!-- My Draft -->
+    <div class="tab-pane fade" id="my-draft">
+    </div>
+
+    <!-- My Friend -->
+    <div class="tab-pane fade" id="my-friend">
+    </div>
+  </div>
+</div>
