@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   def show
     @myposts = @user.posts.published
     @mydrafts = @user.posts.draft
+    @mycomments = @user.replies
   end
 
   def edit

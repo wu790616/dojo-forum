@@ -48,6 +48,22 @@
 
     <!-- My Comment -->
     <div class="tab-pane fade" id="my-comment">
+      <table class="table">
+        <tbody>
+          <% @mycomments.each do |reply| %>
+            <tr>
+              <td>
+                <%= link_to reply.post.title, post_path(reply.post) %>
+                <br>
+                <%= reply.content %>
+              </td>
+              <td>
+                action button
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
 
     <!-- My Collect -->
