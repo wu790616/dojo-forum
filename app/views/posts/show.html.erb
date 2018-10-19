@@ -3,6 +3,7 @@
     <ul class="nav">
       <li class="nav-item">
         <h1><%= @post.title %></h1>
+        Update: <%= @post.edit_time.localtime.to_s(:long) %>
       </li>
       <li class="nav-item">
         <% @post.categories.each do |category| %>

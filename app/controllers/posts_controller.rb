@@ -12,6 +12,7 @@ class PostsController < ApplicationController
     @post.user = current_user
     @post.draft = false if publishing?
     @post.draft = true unless publishing?
+    @post.edit_time = Time.current
     @post.save
     redirect_to post_path(@post)
   end
@@ -31,6 +32,7 @@ class PostsController < ApplicationController
   def update
     @post.draft = false if publishing?
     @post.draft = true unless publishing?
+    @post.edit_time = Time.current
     @post.update(post_params)
     redirect_to post_path(@post)
   end
@@ -45,7 +47,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, :draft, {category_ids:[]}, :image, :permission)
+    params.require(:post).permit(:title, :content, :draft, {category_ids:[]}, :image, :permission, :edit_time)
   end
 
   def set_post

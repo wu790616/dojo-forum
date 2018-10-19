@@ -36,7 +36,8 @@ namespace :dev do
         user.posts.create!(
           title: FFaker::Book::title,
           content: FFaker::CheesyLingo::paragraph,
-          draft: FFaker::Boolean::random
+          draft: FFaker::Boolean::random,
+          edit_time: Time.now
           )
       end
     end

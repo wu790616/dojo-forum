@@ -18,7 +18,7 @@ Most Popular Post:
   <% @top10_posts.each do |post| %>
     <li>
       <%= link_to post.title, post_path(post) %>
-      <%= post.created_at.localtime.to_s(:long) %>
+      <%= post.edit_time.localtime.to_s(:long) %>
     </li>
   <% end %>  
 </ol>
