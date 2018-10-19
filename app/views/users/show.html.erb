@@ -54,12 +54,13 @@
             <tr>
               <td>
                 <%= link_to reply.post.title, post_path(reply.post) %>
-                <br>
-                <%= reply.content %>
+                <div id="reply-<%= reply.id %>"><%= reply.content %></div>                    
               </td>
-              <td>
-                action button
-              </td>
+              <% if @user == current_user %>
+                <td>
+                  <%= link_to 'Edit', edit_reply_path(reply), remote: true, class: "btn btn-primary" %>
+                </td>
+              <% end %>
             </tr>
           <% end %>
         </tbody>

@@ -1,0 +1,5 @@
+<%= form_with model: @reply do |form| %>
+  <%= form.text_area :content, class: "form-control" %>
+  <%= form.submit "Save", class: "btn btn-primary" %>
+  <%= form.submit "Cancel", class: "btn btn-danger" %>
+<% end %>
