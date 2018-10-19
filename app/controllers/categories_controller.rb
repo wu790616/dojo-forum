@@ -1,6 +1,8 @@
 class CategoriesController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index]
+  
   def index
-    @posts = Post.all
+    @posts = Post.all.published
   end
 
   def feeds

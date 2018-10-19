@@ -23,9 +23,9 @@
         <%= link_to 'Edit', edit_post_path(@post), class: "btn btn-info" %>
         <br>
         <% if @post.draft %>
-          <span class="badge badge-success">Published</span>
+          <span class="badge badge-secondary">Draft</span>    
         <% else %>
-          <span class="badge badge-secondary">Draft</span>
+          <span class="badge badge-success">Published</span>
         <% end %>
         <br>
         Permission:

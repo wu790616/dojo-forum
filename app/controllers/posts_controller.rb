@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def new
@@ -18,6 +17,10 @@ class PostsController < ApplicationController
   end
 
   def show
+    if @post.user != current_user && @post.draft == true
+      flash[:alert] = "草稿只有作者可以檢視"
+      redirect_to root_path
+    end
     @reply = Reply.new
     @replies = @post.replies
   end
