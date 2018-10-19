@@ -54,5 +54,31 @@ namespace :dev do
     puts"have create fake tagships"
   end
 
+  # 假Reply
+  task fake_reply: :environment do
+    Reply.destroy_all
+    
+    Post.all.each do |post|
+      rand(1..5).times do |t|
+        user = User.all.sample
+        post.replies.create(
+          user: user,
+          content: FFaker::CheesyLingo::sentence
+          )
+      end
+    end
+
+    puts "have create replies for each post"
+  end
+
+  #=================fake all=================
+  task fake_all: :environment do
+    puts "fake_user processing..."
+    Rake::Task['dev:fake_user'].execute
+    puts "fake_post processing..."
+    Rake::Task['dev:fake_post'].execute
+    puts "fake_reply processing..."
+    Rake::Task['dev:fake_reply'].execute
+  end
 
 end
