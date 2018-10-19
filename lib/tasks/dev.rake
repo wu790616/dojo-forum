@@ -26,4 +26,33 @@ namespace :dev do
     end
   end
 
+  # 假Post
+  task fake_post: :environment do
+    Post.destroy_all
+
+    # 每個user產生3個假Post
+    User.all.each do |user|
+      3.times do |i|
+        user.posts.create!(
+          title: FFaker::Book::title,
+          content: FFaker::CheesyLingo::paragraph,
+          draft: FFaker::Boolean::random
+          )
+      end
+    end
+    puts "have create 3 posts in each user"
+
+    # 每個Post，tag 1~3個 category
+    Post.all.each do |post|
+      rand(1..3).times do |t|
+        category = Category.all.sample
+        unless post.categories.include?(category)
+          post.tagships.create(category: category)
+        end
+      end
+    end
+    puts"have create fake tagships"
+  end
+
+
 end
