@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :replies, only: [:create, :destroy]
   end
 
-  resources :categories, only: [:index] do
+  resources :categories, only: [:index, :show] do
      get :feeds, :on => :collection
   end
   

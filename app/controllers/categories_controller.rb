@@ -3,6 +3,7 @@ class CategoriesController < ApplicationController
 
   def index
     @pagy, @posts = pagy(Post.all.published)
+    @categories = Category.all
   end
 
   def feeds
@@ -11,5 +12,11 @@ class CategoriesController < ApplicationController
     @replies_count = Reply.all.size
     @top10_posts = Post.published.order(replies_count: :desc).limit(10)
     @top10_users = User.all.order(replies_count: :desc).limit(10)
+  end
+
+  def show
+    @category = Category.find(params[:id])
+    @pagy, @posts = pagy(@category.posts.published)
+    @categories = Category.all
   end
 end
