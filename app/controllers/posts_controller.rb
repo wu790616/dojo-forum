@@ -22,9 +22,8 @@ class PostsController < ApplicationController
       redirect_to root_path
     end
     @reply = Reply.new
-    @replies = @post.replies
+    @pagy, @replies = pagy(@post.replies)
     if @post.user != current_user
-
       @post.views_count += 1
       @post.save      
     end

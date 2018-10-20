@@ -61,7 +61,7 @@ namespace :dev do
     Reply.destroy_all
     
     Post.all.each do |post|
-      rand(1..5).times do |t|
+      rand(1..25).times do |t|
         user = User.all.sample
         post.replies.create(
           user: user,
