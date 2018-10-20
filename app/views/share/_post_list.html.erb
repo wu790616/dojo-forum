@@ -13,7 +13,7 @@
         <td><%= post.replies_count %></td>
         <td><%= link_to post.title, post_path(post) %></td>
         <td><%= post.last_reply %></td>
-        <td>#</td>
+        <td><%= post.views_count %></td>
       </tr>
     <% end %>
   </tbody>

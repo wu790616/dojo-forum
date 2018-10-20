@@ -23,6 +23,11 @@ class PostsController < ApplicationController
     end
     @reply = Reply.new
     @replies = @post.replies
+    if @post.user != current_user
+
+      @post.views_count += 1
+      @post.save      
+    end
   end
 
   def edit
