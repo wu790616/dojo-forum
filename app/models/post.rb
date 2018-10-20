@@ -14,6 +14,11 @@ class Post < ApplicationRecord
   # 一個Post可有多篇reply
   has_many :replies, dependent: :destroy
 
+  # 一個Post可被多個user collect
+  has_many :collects, dependent: :destroy
+  has_many :collected_users, through: :collects, source: :user
+
+  
   def last_reply
     if replies_count && replies_count > 0
       reply = self.replies.order(updated_at: :desc).first
