@@ -37,7 +37,8 @@ namespace :dev do
           title: FFaker::Book::title,
           content: FFaker::CheesyLingo::paragraph,
           draft: FFaker::Boolean::random,
-          edit_time: Time.now
+          edit_time: Time.now,
+          views_count: rand(1..300)
           )
       end
     end

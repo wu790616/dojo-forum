@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_19_101147) do
+ActiveRecord::Schema.define(version: 2018_10_20_125318) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(version: 2018_10_19_101147) do
     t.integer "user_id"
     t.string "title"
     t.text "content"
-    t.integer "views_count"
-    t.integer "replies_count"
+    t.integer "views_count", default: 0
+    t.integer "replies_count", default: 0
     t.boolean "draft", default: true
     t.string "image"
     t.string "permission", default: "all"
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2018_10_19_101147) do
     t.string "role", default: "normal"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "replies_count"
+    t.integer "replies_count", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

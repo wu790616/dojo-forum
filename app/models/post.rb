@@ -23,11 +23,4 @@ class Post < ApplicationRecord
     end
   end
 
-  def reply_count
-    if self.replies_count && self.replies_count > 0
-      return self.replies_count
-    else
-      return 0
-    end
-  end
 end
