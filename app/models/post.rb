@@ -14,4 +14,20 @@ class Post < ApplicationRecord
   # 一個Post可有多篇reply
   has_many :replies, dependent: :destroy
 
+  def last_reply
+    if replies_count && replies_count > 0
+      reply = self.replies.order(updated_at: :desc).first
+      return reply.updated_at.localtime.to_s(:long)
+    else
+      return "N/A"
+    end
+  end
+
+  def reply_count
+    if self.replies_count && self.replies_count > 0
+      return self.replies_count
+    else
+      return 0
+    end
+  end
 end
