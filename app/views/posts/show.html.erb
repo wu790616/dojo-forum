@@ -12,11 +12,11 @@
       </li>
     </ul>
     <ul class="navbar-nav ml-auto nav-button">
-      <li class="nav-item">
+      <li class="nav-item" id="collect-buuton">
         <% if @post.is_collected?(current_user) %>        
-          <%= link_to 'Uncollect', uncollect_post_path(@post), method: :post, class: "btn btn-info" %>
+          <%= render partial: "uncollect" %>
         <% else %>
-          <%= link_to 'Collect', collect_post_path(@post), method: :post, class: "btn btn-primary" %>
+          <%= render partial: "collect" %>
         <% end %>
       </li>
     </ul>  
