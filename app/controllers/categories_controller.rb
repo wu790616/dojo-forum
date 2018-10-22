@@ -2,8 +2,8 @@ class CategoriesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
-    @pagy, @posts = pagy(Post.all.published)
     @categories = Category.all
+    @posts_grid = initialize_grid(Post.published, per_page: 20)
   end
 
   def feeds
@@ -16,7 +16,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
-    @pagy, @posts = pagy(@category.posts.published)
+    @posts_grid = initialize_grid(@category.posts.published, per_page: 20)
     @categories = Category.all
   end
 end

@@ -43,6 +43,7 @@ gem 'devise'
 gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-rails'
 gem "bootstrap_form", ">= 4.0.0.alpha1"
+gem 'font-awesome-sass',  '~> 4.3'
 
 # image uploader
 gem 'carrierwave'
@@ -52,6 +53,9 @@ gem 'ffaker'
 
 # pagination
 gem 'pagy'
+
+# sort and paginate table
+gem 'wice_grid', git: 'https://github.com/patricklindsay/wice_grid.git'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
