@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     @myposts = @user.posts.published
     @mydrafts = @user.posts.draft
     @mycomments = @user.replies
+    @mycollects = @user.collected_posts
   end
 
   def edit
