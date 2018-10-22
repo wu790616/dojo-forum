@@ -19,12 +19,11 @@ class Post < ApplicationRecord
   has_many :collected_users, through: :collects, source: :user
 
   
-  def last_reply
-    if replies_count && replies_count > 0
-      reply = self.replies.order(updated_at: :desc).first
-      return reply.updated_at.localtime.to_s(:long)
-    else
+  def last_reply_filter
+    unless self.last_reply
       return "N/A"
+    else
+      return self.last_reply.localtime.to_s(:long)
     end
   end
 
