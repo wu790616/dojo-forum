@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :collect, :uncollect]
 
   def new
     @post = Post.new
@@ -49,6 +49,17 @@ class PostsController < ApplicationController
       flash[:notice] = "Post has removes"
       redirect_to root_path
     end
+  end
+
+  def collect
+    @post.collects.create!(user: current_user)
+    redirect_back(fallback_location: root_path)
+  end
+
+  def uncollect
+    collects = Collect.where(post: @post, user: current_user)
+    collects.destroy_all
+    redirect_back(fallback_location: root_path)
   end
 
   private

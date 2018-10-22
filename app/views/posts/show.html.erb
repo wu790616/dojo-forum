@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row post-nav">
-    <ul class="nav">
+    <ul class="navbar-nav">
       <li class="nav-item">
         <h1><%= @post.title %></h1>
         Update: <%= @post.edit_time.localtime.to_s(:long) %>
@@ -10,7 +10,16 @@
           <span class="badge badge-pill badge-info"><%= category.name %></span>        
         <% end %> 
       </li>
-    </ul> 
+    </ul>
+    <ul class="navbar-nav ml-auto nav-button">
+      <li class="nav-item">
+        <% if @post.is_collected?(current_user) %>        
+          <%= link_to 'Uncollect', uncollect_post_path(@post), method: :post, class: "btn btn-info" %>
+        <% else %>
+          <%= link_to 'Collect', collect_post_path(@post), method: :post, class: "btn btn-primary" %>
+        <% end %>
+      </li>
+    </ul>  
   </div>
   
   <!-- post area -->
