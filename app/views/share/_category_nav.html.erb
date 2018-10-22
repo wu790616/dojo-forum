@@ -1,10 +1,10 @@
 <ul class="nav nav-tabs">
   <li class="nav-item">
-    <%= link_to 'All Post', root_path, class: "nav-link #{is_active?(root_path)}" %>
+    <%= link_to 'All Post', root_path, class: "nav-link #{is_active?(root_path)} cat-nav" %>
   </li>
   <% @categories.each do |category| %>
     <li class="nav-item">
-      <%= link_to category.name, category_path(category), class: "nav-link #{is_active?(category_path(category))}" %>
+      <%= link_to category.name, category_path(category), class: "nav-link #{is_active?(category_path(category))} cat-nav" %>
     </li>
   <% end %>
 </ul>

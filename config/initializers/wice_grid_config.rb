@@ -182,7 +182,7 @@ if defined?(Wice::Defaults)
   Wice::Defaults::PAGE_METHOD_NAME = :page
 
   # The name of the theme to use for the pagination with Kaminari
-  Wice::Defaults::PAGINATION_THEME = :wice_grid
+  Wice::Defaults::PAGINATION_THEME = :bootstrap4
 
   # By default ActiveRecord calls are always executed inside Model.unscoped{}.
   # Setting <tt>USE_DEFAULT_SCOPE</tt> to true will use the default scope for all queries.
