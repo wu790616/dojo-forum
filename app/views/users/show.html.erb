@@ -53,8 +53,9 @@
           <% @mycomments.each do |reply| %>
             <tr id="whole-<%= reply.id %>">
               <td>
-                <%= link_to reply.post.title, post_path(reply.post) %>
-                <div id="reply-<%= reply.id %>"><%= reply.content %></div>                    
+                <%= link_to reply.post.title, post_path(reply.post) %>               
+                <div id="reply-<%= reply.id %>"><%= reply.content %></div>
+                <div id="date-<%= reply.id %>"><%= reply.updated_at.localtime.to_s(:long) %></div>                    
               </td>
               <% if @user == current_user %>
                 <td>

@@ -1,2 +1,4 @@
+<% date = @reply.updated_at.localtime.to_s(:long) %>
 <% html = @reply.content %>
-$("#reply-<%= @reply.id %>").html("<%= html %>")
+$("#reply-<%= @reply.id %>").html("<%= html %>");
+$("#date-<%= @reply.id %>").html("<%= date %>");

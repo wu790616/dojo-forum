@@ -78,7 +78,8 @@
         <%= link_to reply.user.name, user_path(reply.user) %>
       </div>
       <div class="col-10 post-table">
-        <%= reply.created_at.localtime.to_s(:long) %>
+        <strong>Last Updated: </strong>   
+        <div id="date-<%= reply.id %>"><%= reply.updated_at.localtime.to_s(:long) %></div>
         <hr>
         <div id="reply-<%= reply.id %>"><%= reply.content %></div> 
         <div class="reply-button-area post-btn post-right">
