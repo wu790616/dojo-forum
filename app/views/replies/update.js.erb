@@ -2,3 +2,4 @@
 <% html = @reply.content %>
 $("#reply-<%= @reply.id %>").html("<%= html %>");
 $("#date-<%= @reply.id %>").html("<%= date %>");
+$("#button-<%= @reply.id %>").show();

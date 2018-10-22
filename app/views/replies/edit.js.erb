@@ -1,3 +1,4 @@
 <% html = j( render :partial => "reply_form", :locals => { :reply => @reply } ) %>
 var reply_tds = $("#reply-<%= @reply.id %>");
 $(reply_tds).html("<%= html %>");
+$("#button-<%= @reply.id %>").hide();

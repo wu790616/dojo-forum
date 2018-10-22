@@ -82,7 +82,7 @@
         <div id="date-<%= reply.id %>"><%= reply.updated_at.localtime.to_s(:long) %></div>
         <hr>
         <div id="reply-<%= reply.id %>"><%= reply.content %></div> 
-        <div class="reply-button-area post-btn post-right">
+        <div class="post-btn post-right" id="button-<%= reply.id %>">
           <% if reply.user == current_user %>
             <%= link_to 'Edit', edit_reply_path(reply), remote: true, class: "btn btn-outline-primary btn-sm" %>
             <%= link_to 'Delete', reply_path(reply), remote: true, method: :delete, :data => { :confirm => "Are you sure?" }, class: "btn btn-outline-danger btn-sm" %>

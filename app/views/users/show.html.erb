@@ -59,8 +59,10 @@
               </td>
               <% if @user == current_user %>
                 <td>
-                  <%= link_to 'Edit', edit_reply_path(reply), remote: true, class: "btn btn-outline-primary btn-sm" %>
-                  <%= link_to 'Delete', reply_path(reply), remote: true, method: :delete, :data => { :confirm => "Are you sure?" }, class: "btn btn-outline-danger btn-sm" %>
+                  <div id="button-<%= reply.id %>">
+                    <%= link_to 'Edit', edit_reply_path(reply), remote: true, class: "btn btn-outline-primary btn-sm" %>
+                    <%= link_to 'Delete', reply_path(reply), remote: true, method: :delete, :data => { :confirm => "Are you sure?" }, class: "btn btn-outline-danger btn-sm" %>
+                  </div>
                 </td>
               <% end %>
             </tr>
