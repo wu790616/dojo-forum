@@ -1,0 +1,6 @@
+<%= form_with model: @post, url: modified_post_path do |form| %>
+  <%= form.text_area :content, rows: "8", class: "form-control" %>
+  <br>
+  <%= form.submit "Save", remote: true, class: "btn btn-outline-primary" %>
+  <%= form.submit "Cancel", remote: true, class: "btn btn-outline-danger" %>
+<% end %>

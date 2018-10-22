@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :collect, :uncollect]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :collect, :uncollect, :modify, :modified]
 
   def new
     @post = Post.new
@@ -58,6 +58,20 @@ class PostsController < ApplicationController
   def uncollect
     collects = Collect.where(post: @post, user: current_user)
     collects.destroy_all
+  end
+
+  def modify
+    if @post.user != current_user
+      flash[:alert] = "只有作者可以編輯"
+      redirect_to post_path(@post)
+    end
+  end
+
+  def modified
+    if params[:commit] == "Save"
+      @post.edit_time = Time.current
+      @post.update(post_params)
+    end
   end
 
   private

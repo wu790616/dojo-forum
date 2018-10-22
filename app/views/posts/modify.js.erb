@@ -1,0 +1,4 @@
+$('.post-button-area').hide();
+<% html = j( render :partial => "modify_form" ) %>
+var post_area = $("#post-content");
+$(post_area).html("<%= html %>");

@@ -39,11 +39,23 @@
   max-width: 60%;
 }
 
+.post-button-area {
+  padding: 20px 0px;
+  margin: 10px 0px;
+}
+
 .post-btn {
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: 0; 
   margin: 10px;
+}
+
+.post-right {
+  right: 0;
+}
+
+.post-left {
+  left: 0;
 }
 
 .reply-row {

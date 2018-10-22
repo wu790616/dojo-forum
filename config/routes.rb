@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     member do
       post :collect
       post :uncollect
+      get :modify
+      patch :modified
     end
   end
 
