@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = Category.all
-    @posts_grid = initialize_grid(Post.published, per_page: 20)
+    @posts_grid = initialize_grid(Post.published)
   end
 
   def feeds
@@ -16,7 +16,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
-    @posts_grid = initialize_grid(@category.posts.published, per_page: 20)
+    @posts_grid = initialize_grid(@category.posts.published)
     @categories = Category.all
   end
 end
