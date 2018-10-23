@@ -1,5 +1,4 @@
 class FriendRequestsController < ApplicationController
-  before_action :set_friend_request, only: [:update, :destroy]
 
   def create
     friend = User.find(params[:friend_id])
@@ -9,9 +8,11 @@ class FriendRequestsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
-  private
-
-  def set_friend_request
-    @frend_request = FriendRequest.find(params[:id])
+  def destroy
+    user = User.find(params[:user_id])
+    @frend_request = user.friend_requests.where(friend_id: current_user).first
+    @frend_request.destroy
+    redirect_back(fallback_location: root_path)
   end
+
 end

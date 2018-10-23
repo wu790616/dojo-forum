@@ -1,6 +1,8 @@
 <% if @user != current_user %>
   <% if current_user.pending_friends.include?(@user) %>
     <%= link_to 'Inviting', friend_requests_path(@user), method: :post, class: "btn btn-success disabled" %>
+  <% elsif current_user.request_friends.include?(@user) %>
+    <%= link_to 'Waiting', friend_requests_path(@user), method: :post, class: "btn btn-success disabled" %>
   <% else %>
     <%= link_to 'Add Friend', friend_requests_path(:friend_id => @user), method: :post, class: "btn btn-success" %>
   <% end %>

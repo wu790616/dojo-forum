@@ -1,4 +1,9 @@
 <div class="friend-list" id="friend-<%= user.id %>">
   <%= image_tag user.avatar.url, class: "friend-avatar img-thumbnail" %>
   <%= link_to user.name, user_path(user) %>
+  <!-- friend request action -->
+  <% if current_user.request_friends.include?(user) %>
+    <br>
+    <%= link_to 'Ignore', friend_request_path(:user_id => user), method: :delete, class: "btn btn-sm btn btn-outline-danger" %>
+  <% end %>
 </div>
