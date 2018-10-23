@@ -86,8 +86,15 @@
     <div class="tab-pane fade" id="my-friend">
       <!-- Waiting for response -->
       <div class="waiting">
-        <h5 style="text-align:center;">Waiting for response</h5>
+        <h5>Waiting for response</h5>
         <% @waitings.each do |user|%>
+          <%= render partial: "share/friend_list", locals: { user: user } %>
+        <% end %>
+      </div>
+      <!-- My Friend Request -->
+      <div class="requesting">
+        <h5>My Request</h5>
+        <% @requests.each do |user|%>
           <%= render partial: "share/friend_list", locals: { user: user } %>
         <% end %>
       </div>

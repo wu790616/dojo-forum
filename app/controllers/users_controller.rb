@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     @mycollects = @user.collected_posts
     # My Friend
     @waitings = @user.pending_friends
+    @requests = @user.request_friends
   end
 
   def edit
