@@ -7,7 +7,7 @@
       <%= link_to 'Accept', friend_request_path(:user_id => user), method: :patch, class: "btn btn-sm btn btn-outline-success" %>
     </div>
     <div>
-      <%= link_to 'Ignore', friend_request_path(:user_id => user), method: :delete, class: "btn btn-sm btn btn-outline-danger" %>
+      <%= link_to 'Ignore', friend_request_path(:user_id => user), remote: true, method: :delete, class: "btn btn-sm btn btn-outline-danger" %>
     </div>  
   <% end %>
 </div>
