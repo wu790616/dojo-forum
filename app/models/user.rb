@@ -17,6 +17,10 @@ class User < ApplicationRecord
   has_many :collects, dependent: :destroy
   has_many :collected_posts, through: :collects, source: :post
   
+  # 一個使用者有多個朋友邀請
+  has_many :friend_requests, dependent: :destroy
+  has_many :pending_friends, through: :friend_requests, source: :friend
+
   # 檢查是否為管理員
   def admin?
     self.role == "admin"
