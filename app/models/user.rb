@@ -25,6 +25,10 @@ class User < ApplicationRecord
   has_many :inverse_friend_requests, class_name: "FriendRequest", foreign_key: "friend_id"
   has_many :request_friends, through: :inverse_friend_requests, source: :user
 
+  # 一個使用者有多個好友
+  has_many :friendships, dependent: :destroy
+  has_many :friends, through: :friendships
+
 
   # 檢查是否為管理員
   def admin?
