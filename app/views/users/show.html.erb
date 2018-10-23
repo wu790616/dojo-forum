@@ -79,25 +79,31 @@
 
     <!-- My Draft -->
     <div class="tab-pane fade" id="my-draft">
-      <%= render partial: "share/user_post", locals: { posts: @mydrafts } %>
+      <% if @user == current_user %>
+        <%= render partial: "share/user_post", locals: { posts: @mydrafts } %>
+      <% else %>
+        只有作者能看到
+      <% end %>
     </div>
 
     <!-- My Friend -->
     <div class="tab-pane fade" id="my-friend">
-      <!-- Waiting for response -->
-      <div class="waiting">
-        <h5>Waiting for response</h5>
-        <% @waitings.each do |user|%>
-          <%= render partial: "share/friend_list", locals: { user: user } %>
-        <% end %>
-      </div>
-      <!-- My Friend Request -->
-      <div class="requesting">
-        <h5>My Requests</h5>
-        <% @requests.each do |user|%>
-          <%= render partial: "share/friend_list", locals: { user: user } %>
-        <% end %>
-      </div>
+      <% if @user == current_user %>
+        <!-- Waiting for response -->
+        <div class="waiting">
+          <h5>Waiting for response</h5>
+          <% @waitings.each do |user|%>
+            <%= render partial: "share/friend_list", locals: { user: user } %>
+          <% end %>
+        </div>
+        <!-- My Friend Request -->
+        <div class="requesting">
+          <h5>My Requests</h5>
+          <% @requests.each do |user|%>
+            <%= render partial: "share/friend_list", locals: { user: user } %>
+          <% end %>
+        </div>
+      <% end %>
       <!-- My Friend -->
       <div class="friend">
         <h5>My Friends</h5>
