@@ -4,15 +4,16 @@
     <div class="row">
       <div class="col-3 user-profile">
         <%= image_tag @user.avatar.url, class: "user-avatar img-thumbnail" %>
-        <%= link_to @user.name, user_path(@user) %>  
+        <%= link_to @user.name, user_path(@user) %>
+        <br>
+        <% if @user == current_user %>
+          <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-primary" %>
+        <% end %>
+        <%= render partial: "share/add_friend" %>   
       </div>
       <div class="col-8">
         <h5>Introduction:</h5>
         <%= @user.introduction %>
-        <br>
-        <% if @user == current_user %>
-          <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-primary user-button" %>
-        <% end %>         
       </div>        
     </div>
   </div>
