@@ -1,0 +1,4 @@
+<div class="friend-list" id="friend-<%= user.id %>">
+  <%= image_tag user.avatar.url, class: "friend-avatar img-thumbnail" %>
+  <%= link_to user.name, user_path(user) %>
+</div>

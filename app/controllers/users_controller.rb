@@ -6,6 +6,8 @@ class UsersController < ApplicationController
     @mydrafts = @user.posts.draft
     @mycomments = @user.replies
     @mycollects = @user.collected_posts
+    # My Friend
+    @waitings = @user.pending_friends
   end
 
   def edit
