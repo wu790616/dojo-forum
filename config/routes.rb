@@ -26,6 +26,6 @@ Rails.application.routes.draw do
   
   resources :users, only: [:show, :edit, :update]
   resources :replies, only: [:edit, :update, :destroy]
-
+  resources :friend_requests, only: [:create, :update, :destroy]
 
 end
