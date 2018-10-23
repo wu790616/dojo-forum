@@ -1,9 +1,13 @@
-<% if @user != current_user %>
-  <% if current_user.pending_friends.include?(@user) %>
-    <%= link_to 'Inviting', friend_requests_path(@user), class: "btn btn-success disabled" %>
-  <% elsif current_user.request_friends.include?(@user) %>
-    <%= link_to 'Waiting You', friend_requests_path(@user), method: :post, class: "btn btn-success disabled" %>
-  <% else %>
-    <%= link_to 'Add Friend', friend_requests_path(:friend_id => @user), method: :post, class: "btn btn-success" %>
+<div>
+  <% if user != current_user %>
+    <% if current_user.friends.include?(user) %>
+      <%= link_to 'Friend', root_path, class: "btn btn-primary disabled" %>
+    <% elsif current_user.pending_friends.include?(user) %>
+      <%= link_to 'Inviting', root_path, class: "btn btn-success disabled" %>
+    <% elsif current_user.request_friends.include?(user) %>
+      <%= link_to 'Waiting You', root_path, method: :post, class: "btn btn-success disabled" %>
+    <% else %>
+      <%= link_to 'Add Friend', friend_requests_path(:friend_id => user), method: :post, class: "btn btn-success" %>
+    <% end %>
   <% end %>
-<% end %>
+</div>

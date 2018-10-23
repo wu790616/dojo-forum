@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     # My Friend
     @waitings = @user.pending_friends
     @requests = @user.request_friends
+    @friends = @user.friends
   end
 
   def edit

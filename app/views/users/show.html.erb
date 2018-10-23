@@ -9,7 +9,7 @@
         <% if @user == current_user %>
           <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-primary" %>
         <% end %>
-        <%= render partial: "share/add_friend" %>   
+        <%= render partial: "share/add_friend", locals: { user: @user } %>   
       </div>
       <div class="col-8">
         <h5>Introduction:</h5>
@@ -93,8 +93,15 @@
       </div>
       <!-- My Friend Request -->
       <div class="requesting">
-        <h5>My Request</h5>
+        <h5>My Requests</h5>
         <% @requests.each do |user|%>
+          <%= render partial: "share/friend_list", locals: { user: user } %>
+        <% end %>
+      </div>
+      <!-- My Friend -->
+      <div class="friend">
+        <h5>My Friends</h5>
+        <% @friends.each do |user|%>
           <%= render partial: "share/friend_list", locals: { user: user } %>
         <% end %>
       </div>
