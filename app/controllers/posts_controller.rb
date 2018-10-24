@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy, :collect, :uncollect, :modify, :modified]
+  before_action :view_permission
 
   def new
     @post = Post.new
@@ -17,10 +18,6 @@ class PostsController < ApplicationController
   end
 
   def show
-    if @post.user != current_user && @post.draft == true
-      flash[:alert] = "草稿只有作者可以檢視"
-      redirect_to root_path
-    end
     @reply = Reply.new
     @pagy, @replies = pagy(@post.replies)
     if @post.user != current_user
@@ -89,5 +86,19 @@ class PostsController < ApplicationController
       return true
     end
     return false
-  end 
+  end
+
+  def view_permission
+    if @post.permission == "friend"
+      unless @post.user == current_user || @post.user.friends.include?(current_user)
+        flash[:alert] = "只有朋友可以觀看"
+        redirect_back(fallback_location: root_path)
+      end
+    elsif @post.permission == "myself" || @post.draft == true
+      unless @post.user == current_user
+        flash[:alert] = "只有作者可以觀看"
+        redirect_back(fallback_location: root_path)        
+      end
+    end
+  end
 end

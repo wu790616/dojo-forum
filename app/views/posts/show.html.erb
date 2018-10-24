@@ -9,16 +9,14 @@
         <% @post.categories.each do |category| %>
           <span class="badge badge-pill badge-info"><%= category.name %></span>        
         <% end %>
-        <% if @post.user == current_user %>
-          | Status:
-          <% if @post.draft %>
-            <span class="badge badge-secondary">Draft</span>    
-          <% else %>
-            <span class="badge badge-success">Published</span>
-          <% end %>
-          Permission:
-          <span class="badge badge-primary"><%= @post.permission.upcase %></span>
+        | Status:
+        <% if @post.draft %>
+          <span class="badge badge-secondary">Draft</span>    
+        <% else %>
+          <span class="badge badge-success">Published</span>
         <% end %>
+        Permission:
+        <span class="badge badge-primary"><%= @post.permission.upcase %></span>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto nav-button">
