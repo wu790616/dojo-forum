@@ -1,8 +1,10 @@
 class Post < ApplicationRecord
   mount_uploader :image, ImageUploader
-  # Filter非草稿post
+
   scope :published, -> { where( draft: false ) }
   scope :draft, -> { where( draft: true ) }
+  scope :open, -> { published.where(permission: "all") }
+  scope :for_friend, -> { published.where(permission: "friend") }
 
   # 一個Post屬於一個使用者
   belongs_to :user

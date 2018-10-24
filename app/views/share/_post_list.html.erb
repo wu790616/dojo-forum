@@ -7,6 +7,10 @@
     link_to post.title, post_path(post)
   end
 
+  g.column name: 'Permission' do |post|
+    post.permission
+  end
+
   g.column name: 'Last replied at', attribute: 'last_reply', filter: false do |post|
     post.last_reply_filter
   end
