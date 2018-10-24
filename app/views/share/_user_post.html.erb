@@ -11,6 +11,9 @@
           <% end %>          
         </td>
         <td>
+          <span class="badge badge-primary"><%= post.permission.upcase %></span>
+        </td>
+        <td>
           <%= post.edit_time.localtime.to_s(:long) %>
         </td>
       </tr>

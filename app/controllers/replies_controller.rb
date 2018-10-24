@@ -1,8 +1,8 @@
 class RepliesController < ApplicationController
   before_action :set_reply, only: [:edit, :update, :destroy]
+  before_action :reply_permission, only: [:create]
 
   def create
-    @post = Post.find(params[:post_id])
     @reply = @post.replies.build(reply_params)
     @reply.user = current_user
     @reply.save!
@@ -30,5 +30,16 @@ class RepliesController < ApplicationController
 
   def reply_params
     params.require(:reply).permit(:content)
+  end
+
+  def reply_permission
+    @post = Post.find(params[:post_id])
+    if @post.permission == "myself" && @post.user != current_user
+      flash[:alert] = "只有作者可以留言"
+      redirect_to root_path
+    elsif @post.permission == "friend" && @post.user.friends.exclude?(current_user)
+      flash[:alert] = "只有作者好友可以留言"
+      redirect_to root_path
+    end
   end
 end

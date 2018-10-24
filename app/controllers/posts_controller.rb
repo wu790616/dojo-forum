@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy, :collect, :uncollect, :modify, :modified]
-  before_action :view_permission
+  before_action :view_permission, only: [:show]
 
   def new
     @post = Post.new
