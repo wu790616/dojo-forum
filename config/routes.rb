@@ -9,6 +9,12 @@ Rails.application.routes.draw do
     resources :users, only: [:edit, :update]
   end
 
+  namespace :api, defaults: {format: :json} do
+    namespace :v1 do
+      resources :posts, only: [:index, :create, :show, :update, :destroy]
+    end
+  end
+
   resources :posts do
     resources :replies, only: [:create]
     
