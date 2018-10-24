@@ -9,7 +9,7 @@ namespace :dev do
       end
     end
 
-    15.times do |i|
+    18.times do |i|
       name = FFaker::Name::first_name
       file = File.open("#{Rails.root}/public/avatar/user#{i+1}.jpg")
 
@@ -32,17 +32,18 @@ namespace :dev do
 
     # 每個user產生3個假Post
     User.all.each do |user|
-      3.times do |i|
+      6.times do |i|
         user.posts.create!(
           title: FFaker::Book::title,
           content: FFaker::CheesyLingo::paragraph,
           draft: FFaker::Boolean::random,
           edit_time: Time.now,
-          views_count: rand(1..300)
+          views_count: rand(1..300),
+          permission: ["all", "friend", "myself"].sample
           )
       end
     end
-    puts "have create 3 posts in each user"
+    puts "have create 6 posts in each user"
 
     # 每個Post，tag 1~3個 category
     Post.all.each do |post|
@@ -73,6 +74,23 @@ namespace :dev do
     puts "have create replies for each post"
   end
 
+  # 建立friendship
+  task fake_friend: :environment do
+    FriendRequest.destroy_all
+    Friendship.destroy_all
+
+    User.all.each do |user|
+      rand(0..4).times do |t|
+        friend = User.all.sample
+        if user != friend && user.friends.exclude?(friend)
+          user.friends << friend
+        end
+      end
+    end
+
+    puts "have create friendship between all user"
+  end
+
   #=================fake all=================
   task fake_all: :environment do
     puts "fake_user processing..."
@@ -81,6 +99,8 @@ namespace :dev do
     Rake::Task['dev:fake_post'].execute
     puts "fake_reply processing..."
     Rake::Task['dev:fake_reply'].execute
+    puts "fake_friend processing..."
+    Rake::Task['dev:fake_friend'].execute
   end
 
 end
