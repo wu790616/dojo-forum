@@ -11,7 +11,8 @@ class Api::V1::AuthController < ApiController
       render json: {
         message: "Ok",
         auth_token: user.authentication_token,
-        user_id: user.id}
+        user_id: user.id
+      }
     else
       render json: { message:  "Email or Password is wrong" }, status:  401
     end
