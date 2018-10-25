@@ -22,9 +22,29 @@ class Api::V1::PostsController < ApiController
     end
   end
 
+  def create
+    @post = Post.new(post_params)
+    @post.user = current_user
+    @post.edit_time = Time.current
+    if @post.save
+      render json: {
+        message: "Post created successfully!",
+        result: @post
+      }
+    else
+      render json: {
+        errors: @post.errors
+      }
+    end      
+  end
+
   private
 
   def set_post
     @post = Post.find_by(id: params[:id])
+  end
+
+  def post_params
+    params.permit(:title, :content, :draft, {category_ids:[]}, :image, :permission)
   end
 end
