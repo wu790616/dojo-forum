@@ -1,6 +1,6 @@
 class Api::V1::PostsController < ApiController
   before_action :authenticate_user!, except: :index
-  before_action :set_post, only: [:show]
+  before_action :set_post, only: [:show, :update]
 
   def index
     @posts = Post.open
@@ -36,6 +36,27 @@ class Api::V1::PostsController < ApiController
         errors: @post.errors
       }
     end      
+  end
+
+  def update
+    if @post.user == current_user
+      @post.edit_time = Time.current
+      if @post.update(post_params)
+        render json: {
+          message: "Post updated successfully!",
+          result: @post
+        }
+      else
+        render json: {
+          errors: @post.errors
+        }
+    end      
+    else
+      render json: {
+        message: "You don't have permission.",
+        status: 405
+      }
+    end
   end
 
   private
