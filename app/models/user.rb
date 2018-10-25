@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   mount_uploader :avatar, AvatarUploader
   validates_presence_of :name
+  before_create :generate_authentication_token
 
   # 一個使用者有多篇Posts
   has_many :posts, dependent: :destroy
@@ -33,5 +34,9 @@ class User < ApplicationRecord
   # 檢查是否為管理員
   def admin?
     self.role == "admin"
+  end
+
+  def generate_authentication_token
+     self.authentication_token = Devise.friendly_token
   end
 end
