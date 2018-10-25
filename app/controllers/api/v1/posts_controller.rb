@@ -1,6 +1,6 @@
 class Api::V1::PostsController < ApiController
   before_action :authenticate_user!, except: :index
-  before_action :set_post, only: [:show, :update]
+  before_action :set_post, only: [:show, :update, :destroy]
 
   def index
     @posts = Post.open
@@ -51,6 +51,20 @@ class Api::V1::PostsController < ApiController
           errors: @post.errors
         }
     end      
+    else
+      render json: {
+        message: "You don't have permission.",
+        status: 405
+      }
+    end
+  end
+
+  def destroy
+    if @post.user == current_user || current_user.role == "admin"
+      @post.destroy
+      render json: {
+        message: "Post delete successfully!"
+      }
     else
       render json: {
         message: "You don't have permission.",
