@@ -1,6 +1,7 @@
 class Api::V1::PostsController < ApiController
   before_action :authenticate_user!, except: :index
   before_action :set_post, only: [:show, :update, :destroy]
+  before_action :view_permission, only: [:show]
 
   def index
     @posts = Post.open
@@ -10,16 +11,9 @@ class Api::V1::PostsController < ApiController
   end
 
   def show
-    if !@post
-      render json: {
-        message: "Can't find this post.",
-        status: 404
-      }
-    else
-      render json: {
-        data: @post
-      }
-    end
+    render json: {
+      data: @post
+    }
   end
 
   def create
@@ -50,7 +44,7 @@ class Api::V1::PostsController < ApiController
         render json: {
           errors: @post.errors
         }
-    end      
+      end      
     else
       render json: {
         message: "You don't have permission.",
@@ -77,9 +71,27 @@ class Api::V1::PostsController < ApiController
 
   def set_post
     @post = Post.find_by(id: params[:id])
+    if !@post
+      render json: {
+        message: "Can't find this post.",
+        status: 404
+      }
+    end
   end
 
   def post_params
     params.permit(:title, :content, :draft, {category_ids:[]}, :image, :permission)
+  end
+
+  def view_permission
+    if @post.permission == "friend"
+      render json: {
+        message: "只有朋友可以觀看"
+      }
+    elsif @post.permission == "myself" || @post.draft == true
+      render json: {
+        message: "只有作者可以觀看"
+      }
+    end
   end
 end
