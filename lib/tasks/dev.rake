@@ -36,10 +36,9 @@ namespace :dev do
         user.posts.create!(
           title: FFaker::Book::title,
           content: FFaker::CheesyLingo::paragraph,
-          draft: FFaker::Boolean::random,
           edit_time: Time.now,
           views_count: rand(1..300),
-          permission: ["all", "friend", "myself"].sample
+          permission: ["all", "friend", "myself"].sample,
           )
       end
     end
@@ -53,6 +52,8 @@ namespace :dev do
           post.tagships.create(category: category)
         end
       end
+      post.draft = FFaker::Boolean::random
+      post.save
     end
     puts"have create fake tagships"
   end
