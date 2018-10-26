@@ -1,9 +1,9 @@
 class Post < ApplicationRecord
   mount_uploader :image, ImageUploader
   validates_presence_of :title
-  validates_presence_of :content, :category_ids, if: :publish?
-  validates_inclusion_of :draft, :in => %w(true false), allow_blank: true
-  validates_inclusion_of :permission, :in => ["all", "friend", "myself"]
+  validates_presence_of :content, :category_ids, if: :publish?, :message => "在Post發布時不可為空。"
+  validates_inclusion_of :draft, :in => %w(true false), allow_blank: true, :message => "只允許true, false"
+  validates_inclusion_of :permission, :in => ["all", "friend", "myself"], :message => "只允許'all', 'friend', 'mysel'"
 
 
   scope :published, -> { where( draft: false ) }
