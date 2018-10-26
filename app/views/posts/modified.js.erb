@@ -1,3 +1,5 @@
 <% html = @post.content %>
+<% date = @post.edit_time.localtime.to_s(:long) %>
 $("#post-content").html("<%= html %>");
+$("#post-date").html("<%= date %>");
 $('.post-button-area').show();
