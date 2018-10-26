@@ -11,7 +11,7 @@ namespace :dev do
 
     18.times do |i|
       name = FFaker::Name::first_name
-      file = File.open("#{Rails.root}/public/avatar/user#{i+1}.jpg")
+      file = File.open("#{Rails.root}/public/avatar/user#{(i%20)+1}.jpg")
 
       user = User.new(
         name: name,
@@ -32,13 +32,22 @@ namespace :dev do
 
     # 每個user產生3個假Post
     User.all.each do |user|
-      6.times do |i|
+      3.times do |i|
         user.posts.create!(
           title: FFaker::Book::title,
           content: FFaker::CheesyLingo::paragraph,
           edit_time: Time.now,
           views_count: rand(1..300),
-          permission: ["all", "friend", "myself"].sample,
+          permission: "all"
+          )
+      end
+      3.times do |i|
+        user.posts.create!(
+          title: FFaker::Book::title,
+          content: FFaker::CheesyLingo::paragraph,
+          edit_time: Time.now,
+          views_count: rand(1..300),
+          permission: ["friend", "myself"].sample,
           )
       end
     end

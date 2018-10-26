@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = Category.all
-    @posts_grid = initialize_grid(list_selector(Post.published))
+    @posts_grid = initialize_grid(list_selector(Post.published), order: 'posts.id', order_direction: 'asc')
   end
 
   def feeds
@@ -16,7 +16,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
-    @posts_grid = initialize_grid(list_selector(@category.posts.published))
+    @posts_grid = initialize_grid(list_selector(@category.posts.published), order: 'posts.id', order_direction: 'asc')
     @categories = Category.all
   end
 
