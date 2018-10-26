@@ -75,7 +75,10 @@ class PostsController < ApplicationController
   def modified
     if params[:commit] == "Save"
       @post.edit_time = Time.current
-      @post.update(post_params)
+      unless @post.update(post_params)
+        flash[:alert] = @post.errors.full_messages.to_sentence
+        redirect_to post_path(@post)
+      end      
     end
   end
 

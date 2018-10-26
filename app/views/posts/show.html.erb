@@ -52,8 +52,10 @@
       <div class="post-button-area">
         <% if @post.user == current_user %>
           <div class="post-btn post-left">
-            <%= link_to 'Modify', modify_post_path(@post), remote: true, class: "btn btn-primary" %>
-            <%= link_to 'To Edit', edit_post_path(@post), class: "btn btn-info" %>
+            <%= link_to 'Modify', modify_post_path(@post), remote: true, class: "btn btn-primary", :data => {:toggle=>"tooltip"},
+                    'data-original-title' => "Modify content" %>
+            <%= link_to 'To Edit', edit_post_path(@post), class: "btn btn-info", :data => {:toggle=>"tooltip"},
+                    'data-original-title' => "Go to Edit Page" %>
           </div>
           <div class="post-btn post-right">
             <%= link_to 'Delete', post_path(@post), method: :delete, :data => { :confirm => "Are you sure?" }, class: "btn btn-danger" %>
@@ -103,5 +105,9 @@
     </div>
   </div>
 </div>
-
+<script>
+  $(document).on("turbolinks:load",function(){
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
 
