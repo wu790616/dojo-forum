@@ -23,7 +23,7 @@ class PostsController < ApplicationController
 
   def show
     @reply = Reply.new
-    @pagy, @replies = pagy(@post.replies)
+    @pagy, @replies = pagy(@post.replies.order("id ASC"))
     if @post.user != current_user
       @post.views_count += 1
       @post.save      

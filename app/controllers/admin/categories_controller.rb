@@ -3,13 +3,13 @@ class Admin::CategoriesController < ApplicationController
   before_action :set_category, only: [:destroy, :edit, :update]
 
   def index
-    @categories = Category.all
+    @categories = Category.all.order("id ASC")
     if params[:id]
       set_category
     else
       @category = Category.new
     end
-    @users = User.all
+    @users = User.all.order("id ASC")
   end
 
   def destroy
