@@ -5,8 +5,12 @@ class RepliesController < ApplicationController
   def create
     @reply = @post.replies.build(reply_params)
     @reply.user = current_user
-    @reply.save!
-    redirect_back(fallback_location: root_path)
+    if @reply.save
+      redirect_back(fallback_location: root_path)
+    else
+      flash[:alert] = @reply.errors.full_messages.to_sentence
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def edit
@@ -14,7 +18,10 @@ class RepliesController < ApplicationController
 
   def update
     if params[:commit] == "Save"
-      @reply.update_attributes(reply_params)
+      unless @reply.update_attributes(reply_params)
+        flash[:alert] = @reply.errors.full_messages.to_sentence
+        redirect_back(fallback_location: root_path) 
+      end 
     end
   end
 
@@ -37,7 +44,7 @@ class RepliesController < ApplicationController
     if @post.permission == "myself" && @post.user != current_user
       flash[:alert] = "只有作者可以留言"
       redirect_to root_path
-    elsif @post.permission == "friend" && @post.user.friends.exclude?(current_user)
+    elsif @post.permission == "friend" && @post.user.friends.exclude?(current_user) && @post.user != current_user
       flash[:alert] = "只有作者好友可以留言"
       redirect_to root_path
     end

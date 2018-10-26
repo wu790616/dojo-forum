@@ -96,7 +96,7 @@
   <!-- create reply area -->
   <div class="row">
     <div class="col-12 post-table">
-      <%= form_with model: [ @post, @reply ] do |form|  %>
+      <%= form_with model: [ @post, @reply ], local: true do |form|  %>
         <%= form.text_area :content, placeholder: "留下你的回覆...", class: "form-control reply-form", rows: "4" %>
         <%= form.submit '留言', class: "btn btn-primary" %>
       <% end %>    
