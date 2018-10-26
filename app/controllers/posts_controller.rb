@@ -13,8 +13,12 @@ class PostsController < ApplicationController
     @post.draft = false if publishing?
     @post.draft = true unless publishing?
     @post.edit_time = Time.current
-    @post.save
-    redirect_to post_path(@post)
+    if @post.save
+      redirect_to post_path(@post)
+    else
+      flash.now[:alert] = @post.errors.full_messages.to_sentence
+      render :action => :new
+    end
   end
 
   def show
@@ -37,8 +41,12 @@ class PostsController < ApplicationController
     @post.draft = false if publishing?
     @post.draft = true unless publishing?
     @post.edit_time = Time.current
-    @post.update(post_params)
-    redirect_to post_path(@post)
+    if @post.update(post_params)
+      redirect_to post_path(@post)
+    else
+      flash.now[:alert] = @post.errors.full_messages.to_sentence
+      render :action => :edit
+    end   
   end
 
   def destroy

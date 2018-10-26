@@ -1,4 +1,4 @@
-<%= bootstrap_form_with model: @post do |form| %>
+<%= bootstrap_form_with model: @post, local: true do |form| %>
   <%= form.text_field :title %>
   <%= form.text_area :content, rows: "10" %> 
   <span>Who can see?</span>

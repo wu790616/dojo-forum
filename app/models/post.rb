@@ -1,5 +1,10 @@
 class Post < ApplicationRecord
   mount_uploader :image, ImageUploader
+  validates_presence_of :title
+  validates_presence_of :content, :category_ids, if: :publish?
+  validates_inclusion_of :draft, :in => %w(true false), allow_blank: true
+  validates_inclusion_of :permission, :in => ["all", "friend", "myself"]
+
 
   scope :published, -> { where( draft: false ) }
   scope :draft, -> { where( draft: true ) }
@@ -31,6 +36,10 @@ class Post < ApplicationRecord
 
   def is_collected?(user)
     self.collected_users.include?(user)
+  end
+
+  def publish?
+    return draft == false
   end
 
 end
