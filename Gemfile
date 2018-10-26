@@ -53,6 +53,7 @@ gem 'ffaker'
 
 # pagination
 gem 'pagy'
+gem 'kaminari'
 
 # sort and paginate table
 gem 'wice_grid', git: 'https://github.com/patricklindsay/wice_grid.git'
