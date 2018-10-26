@@ -45,6 +45,7 @@ gem 'font-awesome-sass',  '~> 4.3'
 
 # image uploader
 gem 'carrierwave'
+gem 'cloudinary'
 
 # fake data
 gem 'ffaker'
