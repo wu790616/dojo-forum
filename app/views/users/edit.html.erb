@@ -5,6 +5,7 @@
     <label for="avatar">Avatar</label>
     <div class="image-upload">
       <%= image_tag @user.avatar.url, width: '200px', class: "img-thumbnail" if @user.avatar? %>
+      <%= form.hidden_field(:avatar_cache) %>
       <%= form.file_field_without_bootstrap :avatar, class: "form-control-file" %>
     </div>
     <%= form.submit 'Save', class: "btn btn-primary" %>

@@ -32,3 +32,4 @@
 
 # Ignore carrierwave upload
 /public/uploads 
+/config/cloudinary.yml
