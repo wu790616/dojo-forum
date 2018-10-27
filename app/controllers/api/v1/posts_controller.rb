@@ -21,9 +21,10 @@ class Api::V1::PostsController < ApiController
     @post.user = current_user
     @post.edit_time = Time.current
     if @post.save
+      sleep 1
       render json: {
         message: "Post created successfully!",
-        result: @post
+        id: @post.id
       }
     else
       render json: {
@@ -35,10 +36,10 @@ class Api::V1::PostsController < ApiController
   def update
     if @post.user == current_user
       @post.edit_time = Time.current
-      if @post.update(post_params)
+      if @post.update!(post_params)
         render json: {
           message: "Post updated successfully!",
-          result: @post
+          id: @post.id
         }
       else
         render json: {
