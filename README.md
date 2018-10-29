@@ -3,6 +3,8 @@
 * [Getting Started](#getting-started)
 * [User Story](#user-story)
 * [API介面](#api介面)
+* [Built With](#built-with)
+* [Deploy](deploy)
 
 ## Getting Started
 #### Install project
@@ -105,3 +107,18 @@ production:
 * PATCH /api/v1/posts/:id (編輯文章/需登入) 
 * DELETE /api/v1/posts/:id (刪除文章/需登入) 
 * GET /api/v1/posts (瀏覽全部文章內容/不需登入) 
+
+## Built With
+* ruby 2.5.1
+* rails 5.2.1
+* Authentication: [Devise](https://github.com/plataformatec/devise)
+* Layout: [Bootstrap4](https://github.com/twbs/bootstrap-rubygem), [bootstrap_form](https://github.com/bootstrap-ruby/bootstrap_form)
+* Image Uploader: [CarrierWave](https://github.com/carrierwaveuploader/carrierwave), [Cloudinary](https://cloudinary.com/)
+* Fake Data: [ffaker](https://github.com/ffaker/ffaker)
+* Pagination: [Pagy](https://github.com/ddnexus/pagy), [Kaminari](https://github.com/kaminari/kaminari)
+* Table Sort: [WiceGrid](https://github.com/patricklindsay/wice_grid)
+
+## Deploy
+Deploy on [Heroku](https://www.heroku.com/)
+
+https://wendy-dojo.herokuapp.com/
