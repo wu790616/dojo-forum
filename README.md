@@ -1,4 +1,7 @@
 # Dojo-Forum
+## 目錄
+* [User Story](#user-story)
+* [API介面](#api介面)
 
 ## User Story
 #### 使用者認證
@@ -60,3 +63,13 @@
   * 開放給所有人都可以瀏覽和留言
   * 限定好友才能瀏覽和留言
   * 只有自己可以瀏覽和留言
+
+## API介面
+POST /api/v1/login (登入,登入參數請設定為`emai`及`password`)
+POST /api/v1/logout (登出)
+GET /api/v1/posts (瀏覽全部文章內容/不需登入)
+GET /api/v1/posts/:id (瀏覽單篇文章內容/需登入)
+POST /api/v1/posts (新增文章/需登入)
+PATCH /api/v1/posts/:id (編輯文章/需登入)
+DELETE /api/v1/posts/:id (刪除文章/需登入)
+GET /api/v1/posts (瀏覽全部文章內容/不需登入)
