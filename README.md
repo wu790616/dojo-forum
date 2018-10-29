@@ -1,7 +1,39 @@
 # Dojo-Forum
 ## 目錄
+* [Getting Started](#getting-started)
 * [User Story](#user-story)
 * [API介面](#api介面)
+
+## Getting Started
+#### Install project
+```
+$ bundle install
+$ rails db:migrate
+```
+#### Setup data for development
+```
+$ rails db:seed
+$ rails dev:fake_all
+```
+#### Setup environment
+本專案將圖片存在雲端服務Cloudinary，須將相關設定存入`config/cloudinary.yml`，
+大寫字母為需要修改的內容
+```
+development:
+  cloud_name: "CLOUD_NAME"
+  api_key: "API_KEY"
+  api_secret: "API_SECRET"
+  secure: true
+  cdn_subdomain: true
+
+production:
+  cloud_name: "CLOUD_NAME"
+  api_key: "API_KEY"
+  api_secret: "API_SECRET"
+  secure: true
+  cdn_subdomain: true
+```
+
 
 ## User Story
 #### 使用者認證
@@ -65,11 +97,11 @@
   * 只有自己可以瀏覽和留言
 
 ## API介面
-POST /api/v1/login (登入,登入參數請設定為`emai`及`password`)
-POST /api/v1/logout (登出)
-GET /api/v1/posts (瀏覽全部文章內容/不需登入)
-GET /api/v1/posts/:id (瀏覽單篇文章內容/需登入)
-POST /api/v1/posts (新增文章/需登入)
-PATCH /api/v1/posts/:id (編輯文章/需登入)
-DELETE /api/v1/posts/:id (刪除文章/需登入)
-GET /api/v1/posts (瀏覽全部文章內容/不需登入)
+* POST /api/v1/login (登入,登入參數請設定為`emai`及`password`) 
+* POST /api/v1/logout (登出) 
+* GET /api/v1/posts (瀏覽全部文章內容/不需登入) 
+* GET /api/v1/posts/:id (瀏覽單篇文章內容/需登入) 
+* POST /api/v1/posts (新增文章/需登入) 
+* PATCH /api/v1/posts/:id (編輯文章/需登入) 
+* DELETE /api/v1/posts/:id (刪除文章/需登入) 
+* GET /api/v1/posts (瀏覽全部文章內容/不需登入) 
