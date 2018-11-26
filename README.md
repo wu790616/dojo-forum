@@ -4,7 +4,7 @@
 * [User Story](#user-story)
 * [API介面](#api介面)
 * [Built With](#built-with)
-* [Deploy](deploy)
+* [Deploy](#deploy)
 
 ## Getting Started
 #### Install project
